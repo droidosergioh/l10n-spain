@@ -1,0 +1,83 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Your rule content
+
+- You can @ files here
+- You can use markdown but dont have to
+
+# Odoo v15 Module Development Guidelines for ACCON Modules
+- If you are creating a new module, create the folder first and later the files inside it
+
+## Module Structure
+accon_module_name/
+├── __init__.py
+├── __manifest__.py
+├── controllers/
+│   ├── __init__.py
+│   └── controllers.py
+├── data/
+│   └── module_data.xml
+├── demo/
+│   └── demo_data.xml
+├── i18n/
+│   └── en_US.po
+├── models/
+│   ├── __init__.py
+│   └── models.py
+├── security/
+│   ├── ir.model.access.csv
+│   └── security_rules.xml
+├── static/
+│   ├── description/
+│   │   └── icon.png
+│   └── src/
+├── views/
+│   ├── templates.xml
+│   └── views.xml
+└── wizards/
+    ├── __init__.py
+    └── wizards.py
+
+## Naming Conventions
+- Module Name: Always start with `accon_` (e.g., accon_invoicing)
+- Model Names: 
+  * Model name: accon.model.name  
+  * Table name: accon_model_name
+  * Class name: AcconModelName
+- Field Names: snake_case (invoice_line_id, employee_code)
+- Method Names: snake_case (compute_total, validate_invoice)
+- XML IDs: accon_module.model_name_action
+
+## Manifest File
+- version: '15.0.1.0.0'
+- Follow proper dependency ordering
+- List security files first in data
+- Make a module description very clear, with concrete and direct plain words so everyone can understand but highlight important technical details
+
+## Model Definitions
+- Use proper inheritance
+- Make fields trackable when appropriate
+- Use computed fields with proper depends
+- Add helpful docstrings
+
+## View Definitions
+- Consistent naming: accon_model_name_view_form
+- Use statusbar_visible for main states
+- Apply proper decorations in list view
+
+## Security
+- Always define proper access rights
+- Consider record rules for multi-company
+- Make everyone be able to read, delete, modify and create by default unless it is specified
+- Don´t leave spaces or similar that could lead to errors
+
+## Best Practices
+- Follow semantic versioning
+- One class per file when possible
+- Use proper indexing for search fields
+- Add translation markers _()
+- Write unit tests for important functionality
+- Document complex logic
